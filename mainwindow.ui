@@ -23,6 +23,20 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="save_grammar">
+      <property name="text">
+       <string>Сохранить</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QCheckBox" name="is_original">
+      <property name="text">
+       <string>Исходная</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QLineEdit" name="save_way"/>
     </item>
     <item>
@@ -36,7 +50,7 @@
      <x>0</x>
      <y>0</y>
      <width>400</width>
-     <height>21</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

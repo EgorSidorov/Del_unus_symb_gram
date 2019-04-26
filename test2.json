@@ -1,0 +1,145 @@
+{
+    "grammar": {
+        "-name": "G0",
+        "nonterminalsymbols": {
+            "nonterm": [
+                {
+                    "-name": "E"
+                },
+                {
+                    "-name": "T"
+                },
+                {
+                    "-name": "F"
+                }
+            ]
+        },
+        "productions": {
+            "production": [
+                {
+                    "lhs": {
+                        "-name": "E"
+                    },
+                    "rhs": {
+                        "symbol": [
+                            {
+                                "-name": "E",
+                                "-type": "nonterm"
+                            },
+                            {
+                                "-name": "ADD",
+                                "-type": "term"
+                            },
+                            {
+                                "-name": "T",
+                                "-type": "nonterm"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "lhs": {
+                        "-name": "E"
+                    },
+                    "rhs": {
+                        "symbol": {
+                            "-name": "T",
+                            "-type": "nonterm"
+                        }
+                    }
+                },
+                {
+                    "lhs": {
+                        "-name": "T"
+                    },
+                    "rhs": {
+                        "symbol": [
+                            {
+                                "-name": "T",
+                                "-type": "nonterm"
+                            },
+                            {
+                                "-name": "MUL",
+                                "-type": "term"
+                            },
+                            {
+                                "-name": "F",
+                                "-type": "nonterm"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "lhs": {
+                        "-name": "T"
+                    },
+                    "rhs": {
+                        "symbol": {
+                            "-name": "F",
+                            "-type": "nonterm"
+                        }
+                    }
+                },
+                {
+                    "lhs": {
+                        "-name": "F"
+                    },
+                    "rhs": {
+                        "symbol": {
+                            "-name": "IDENT",
+                            "-type": "nonterm"
+                        }
+                    }
+                },
+                {
+                    "lhs": {
+                        "-name": "F"
+                    },
+                    "rhs": {
+                        "symbol": [
+                            {
+                                "-name": "LPAREN",
+                                "-type": "term"
+                            },
+                            {
+                                "-name": "E",
+                                "-type": "nonterm"
+                            },
+                            {
+                                "-name": "RPAREN",
+                                "-type": "term"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "startsymbol": {
+            "-name": "E"
+        },
+        "terminalsymbols": {
+            "term": [
+                {
+                    "-name": "IDENT",
+                    "-spell": "a"
+                },
+                {
+                    "-name": "ADD",
+                    "-spell": "+"
+                },
+                {
+                    "-name": "MUL",
+                    "-spell": "*"
+                },
+                {
+                    "-name": "LPAREN",
+                    "-spell": "("
+                },
+                {
+                    "-name": "RPAREN",
+                    "-spell": ")"
+                }
+            ]
+        }
+    }
+}

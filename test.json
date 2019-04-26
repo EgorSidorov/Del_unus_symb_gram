@@ -1,0 +1,125 @@
+{
+"grammar": {
+"-name": "G0",
+"terminalsymbols": {
+"term": [
+{
+"-name": "IDENT",
+"-spell": "a"
+},
+{
+"-name": "ADD",
+"-spell": "+"
+},
+{
+"-name": "MUL",
+"-spell": "*"
+},
+{
+"-name": "LPAREN",
+"-spell": "("
+},
+{
+"-name": "RPAREN",
+"-spell": ")"
+}
+]
+},
+"nonterminalsymbols": {
+"nonterm": [
+{ "-name": "E" },
+{ "-name": "T" },
+{ "-name": "F" }
+]
+},
+"productions": {
+"production": [
+{
+"lhs": { "-name": "E" },
+"rhs": {
+"symbol": [
+{
+"-type": "nonterm",
+"-name": "E"
+},
+{
+"-type": "term",
+"-name": "ADD"
+},
+{
+"-type": "nonterm",
+"-name": "T"
+}
+]
+}
+},
+{
+"lhs": { "-name": "E" },
+"rhs": {
+"symbol": {
+"-type": "nonterm",
+"-name": "T"
+}
+}
+},
+{
+"lhs": { "-name": "T" },
+"rhs": {
+"symbol": [
+{
+"-type": "nonterm",
+"-name": "T"
+},
+{
+"-type": "term",
+"-name": "MUL"
+},
+{
+"-type": "nonterm",
+"-name": "F"
+}
+]
+}
+},
+{
+"lhs": { "-name": "T" },
+"rhs": {
+"symbol": {
+"-type": "nonterm",
+"-name": "F"
+}
+}
+},
+{
+"lhs": { "-name": "F" },
+"rhs": {
+"symbol": {
+"-type": "nonterm",
+"-name": "IDENT"
+}
+}
+},
+{
+"lhs": { "-name": "F" },
+"rhs": {
+"symbol": [
+{
+"-type": "term",
+"-name": "LPAREN"
+},
+{
+"-type": "nonterm",
+"-name": "E"
+},
+{
+"-type": "term",
+"-name": "RPAREN"
+}
+]
+}
+}
+]
+},
+"startsymbol": { "-name": "E" }
+}
+}
