@@ -1,0 +1,100 @@
+{
+    "grammar" 
+        :{"terminalsymbols": {
+                "term": [
+                    {
+                        "-name": "IDENT",
+                        "-spell": "a"
+                    },
+                    {
+                        "-name": "SOME",
+                        "-spell": "c"
+                    }
+                ]
+            },
+         "nonterminalsymbols": {
+                "nonterm": [
+                    {
+                        "-name": "A"
+                    },
+                    {
+                        "-name": "S"
+                    },
+                    {
+                        "-name": "D"
+                    }
+                ]
+            },
+        "productions": {
+                "production": [
+                    {
+                        "lhs": {
+                            "-name": "S"
+                        },
+                        "rhs": {
+                            "symbol": [
+                                {
+                                    "-name": "A",
+                                    "-type": "nonterm"
+                                },
+                                {
+                                    "-name": "SOME",
+                                    "-type": "term"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "lhs": {
+                            "-name": "A"
+                        },
+                        "rhs": {
+                            "symbol": [
+                                {
+                                    "-name": "S",
+                                    "-type": "nonterm"
+                                },
+                                {
+                                    "-name": "D",
+                                    "-type": "nonterm"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "lhs": {
+                            "-name": "D"
+                        },
+                        "rhs": {
+                            "symbol": [
+                                {
+                                    "-name": "IDENT",
+                                    "-type": "term"
+                                },
+                                {
+                                    "-name": "D",
+                                    "-type": "nonterm"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "lhs": {
+                            "-name": "A"
+                        },
+                        "rhs": {
+                            "symbol": [
+                                {
+                                    "-name": "IDENT",
+                                    "-type": "term"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "startsymbol": {
+                "-name": "S"
+            }
+			}
+}

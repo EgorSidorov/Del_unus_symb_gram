@@ -81,6 +81,67 @@ void Grammar::write_info(){
     }
 }
 
+void Grammar::remove_useless_characters(){
+    //ищем нетерминалы с левой стороны без нетерминалов с правой стороны или где все с правой стороны входят в множество
+    QStringList added_rules;
+    bool has_choosed = true;
+    while(has_choosed){
+        has_choosed = false;
+        QStringList last_keys;
+        for(auto& iter : production.keys()){
+            if(last_keys.contains(iter))
+                continue;
+            for(auto& iter2 : production.values(iter)){
+                bool isAdded = true;
+                for(symbol& iter3 : iter2){
+                    if(iter3.type){
+                        for(auto& iter4 : iter2){
+                            if(!iter4.type && !added_rules.contains(iter4.name)){
+                                isAdded = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if(isAdded && !added_rules.contains(iter)){
+                    added_rules.append(iter);
+                    has_choosed = true;
+                }
+
+
+            }
+            last_keys.append(iter);
+        }
+    }
+    qDebug()<<added_rules;
+
+    //удалим непорождающие терминалы
+    QStringList last_keys;
+    for(auto& iter : production.keys()){
+        if(last_keys.contains(iter))
+            continue;
+        bool isRemovedByName = false;
+        if(!added_rules.contains(iter))
+            isRemovedByName = true;
+        for(auto& iter2 : production.values(iter)){
+            bool isRemoved = false;
+            for(symbol& iter3 : iter2){
+                if(!added_rules.contains(iter3.name) && !iter3.type)
+                {
+                    isRemoved = true;
+                    break;
+                }
+            }
+            if(isRemoved || isRemovedByName)
+                production.remove(iter,iter2);
+        }
+        last_keys.append(iter);
+    }
+
+    //QList<int> number_rules1;
+    //QList<int> number_rules2;
+}
+
 void Grammar::elimination_of_left_recursion(){
     //запишем все правила вывода из А в виде А->Аа1...
     //QList<int> number_rules1;
@@ -185,8 +246,12 @@ Grammar::load(QByteArray input)
     isValid = check_valid();
     if(isValid){
         production.clear();
+        terminalsymbolsname.clear();
+        terminalsymbolsspell.clear();
+        nonterminalsymbolsname.clear();
         write_info();
         elimination_of_left_recursion();
+        remove_useless_characters();
         make_output();
         //debug_print();
     }

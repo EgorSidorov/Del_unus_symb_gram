@@ -48,6 +48,7 @@ private:
     void debug_print();
     void elimination_of_left_recursion();
     make_output();
+    void remove_useless_characters();
 };
 
 #endif // GRAMMAR_H
