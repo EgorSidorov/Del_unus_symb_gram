@@ -4,7 +4,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QStringList>
-#include <QMap>
+#include <QMultiMap>
 #include <QList>
 
 class Grammar
@@ -21,12 +21,19 @@ public:
 
 private:
     QJsonDocument input;
+    QJsonDocument output;
     bool isValid;
     bool check_valid();
     void write_info();
     struct symbol{
         QString name;
         bool type;
+        bool operator ==(const symbol& value){
+            if(value.name == name && value.type == type)
+                return true;
+            return false;
+        }
+
     };
 
     QJsonObject terminalsymbolsJSON;
@@ -36,9 +43,11 @@ private:
     QStringList terminalsymbolsname;
     QStringList terminalsymbolsspell;
     QStringList nonterminalsymbolsname;
-    QList<std::pair<QString,QList<symbol>>> production;
+    QMultiMap<QString,QList<symbol>> production;
     QString startSymbol;
     void debug_print();
+    void elimination_of_left_recursion();
+    make_output();
 };
 
 #endif // GRAMMAR_H
