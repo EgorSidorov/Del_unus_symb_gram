@@ -138,6 +138,8 @@ void Grammar::remove_useless_characters(){
         last_keys.append(iter);
     }
 
+    this->nonterminalsymbolsname = added_rules;
+
     //QList<int> number_rules1;
     //QList<int> number_rules2;
 }
@@ -259,7 +261,7 @@ Grammar::load(QByteArray input)
 
 Grammar::make_output(){
      QJsonObject parentObject;
-     QJsonArray grammararray;
+     QJsonObject grammar;
      QJsonObject terminalsymbols;
      QJsonObject term;
      QJsonObject nonterm;
@@ -270,7 +272,7 @@ Grammar::make_output(){
      QJsonObject startsymbol;
      QJsonObject startsymbolname;
      startsymbolname.insert("-name",this->startSymbol);
-     terminalsymbols.insert("terminalsymbols", QJsonValue::fromVariant(term));
+     //terminalsymbols.insert("terminalsymbols", QJsonValue::fromVariant(term));
      //
 
      //
@@ -281,7 +283,7 @@ Grammar::make_output(){
          nontermelem.append(QJsonValue::fromVariant(nontermname));
      }
      nonterm.insert("nonterm", QJsonValue::fromVariant(nontermelem));
-     nonterminalsymbols.insert("nonterminalsymbols", QJsonValue::fromVariant(nonterm));
+     grammar.insert("nonterminalsymbols", QJsonValue::fromVariant(nonterm));
      //
 
      //
@@ -295,7 +297,7 @@ Grammar::make_output(){
          number_iter++;
      }
      term.insert("term", QJsonValue::fromVariant(termelem));
-     terminalsymbols.insert("terminalsymbols", QJsonValue::fromVariant(term));
+     grammar.insert("terminalsymbols", QJsonValue::fromVariant(term));
      //
 
      //
@@ -331,13 +333,13 @@ Grammar::make_output(){
      production.insert("production",QJsonValue::fromVariant(productionname));
      //
 
-     productions.insert("productions", QJsonValue::fromVariant(production));
-     startsymbol.insert("startsymbol", QJsonValue::fromVariant(startsymbolname));
-     grammararray.append(terminalsymbols);
-     grammararray.append(nonterminalsymbols);
-     grammararray.append(productions);
-     grammararray.append(startsymbol);
-     parentObject.insert("grammar", QJsonValue::fromVariant(grammararray));
+     grammar.insert("productions", QJsonValue::fromVariant(production));
+     grammar.insert("startsymbol", QJsonValue::fromVariant(startsymbolname));
+     //grammararray.append(terminalsymbols);
+     //grammararray.append(nonterminalsymbols);
+     //grammararray.append(productions);
+     //grammararray.append(startsymbol);
+     parentObject.insert("grammar", QJsonValue::fromVariant(grammar));
      output.setObject(parentObject);
 }
 

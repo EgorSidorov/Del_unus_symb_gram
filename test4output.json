@@ -1,0 +1,66 @@
+{
+    "grammar": {
+        "nonterminalsymbols": {
+            "nonterm": [
+                {
+                    "-name": "A"
+                },
+                {
+                    "-name": "S"
+                },
+                {
+                    "-name": "D"
+                }
+            ]
+        },
+        "productions": {
+            "production": [
+                {
+                    "lhs": {
+                        "-name": "A"
+                    },
+                    "rhs": {
+                        "symbol": [
+                            {
+                                "-name": "IDENT",
+                                "-type": "term"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "lhs": {
+                        "-name": "S"
+                    },
+                    "rhs": {
+                        "symbol": [
+                            {
+                                "-name": "A",
+                                "-type": "nonterm"
+                            },
+                            {
+                                "-name": "SOME",
+                                "-type": "term"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "startsymbol": {
+            "-name": "S"
+        },
+        "terminalsymbols": {
+            "term": [
+                {
+                    "-name": "IDENT",
+                    "-spell": "a"
+                },
+                {
+                    "-name": "SOME",
+                    "-spell": "c"
+                }
+            ]
+        }
+    }
+}
