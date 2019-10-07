@@ -13,7 +13,7 @@ public:
     Grammar(QByteArray input);
     Grammar(){};
 
-    load(QByteArray input);
+    void load(QByteArray input);
 
     QJsonDocument get_Json() const;
 
@@ -47,7 +47,7 @@ private:
     QString startSymbol;
     void debug_print();
     void elimination_of_left_recursion();
-    make_output();
+    void make_output();
     void remove_useless_characters();
 };
 

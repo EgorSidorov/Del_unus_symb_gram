@@ -242,7 +242,7 @@ bool Grammar::getIsValid() const
     return isValid;
 }
 
-Grammar::load(QByteArray input)
+void Grammar::load(QByteArray input)
 {
     this->input = QJsonDocument::fromJson(input);
     isValid = check_valid();
@@ -259,7 +259,7 @@ Grammar::load(QByteArray input)
     }
 }
 
-Grammar::make_output(){
+void Grammar::make_output(){
      QJsonObject parentObject;
      QJsonObject grammar;
      QJsonObject terminalsymbols;
